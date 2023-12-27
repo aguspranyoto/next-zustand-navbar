@@ -34,10 +34,7 @@ const Navbar = () => {
                 ></path>
               </svg>
             </button>
-            <a
-              href="https://flowbite.com"
-              className="flex ms-2 md:me-24 items-center gap-2"
-            >
+            <a href="/" className="flex ms-2 md:me-24 items-center gap-2">
               <PawPrint className="w-8 h-8" />
               <span className="self-center text-xl font-semibold sm:text-2xl whitespace-nowrap dark:text-white">
                 Bears App

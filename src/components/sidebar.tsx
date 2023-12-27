@@ -4,7 +4,28 @@ import { useSidebarStore } from "@/lib/store";
 import { useEffect, useState } from "react";
 
 const Sidebar = () => {
-  const { isOpen } = useSidebarStore();
+  const { isOpen, profileOpen, toggleSidebar, toggleProfile } =
+    useSidebarStore();
+
+  useEffect(() => {
+    const handleOutsideClick = (event: MouseEvent) => {
+      const sidebar = document.getElementById("sidebar");
+      const profile = document.getElementById("profile");
+
+      if (sidebar && !sidebar.contains(event.target as Node) && isOpen) {
+        toggleSidebar(); // Close the sidebar if it's open
+      }
+      if (profile && !profile.contains(event.target as Node) && profileOpen) {
+        toggleProfile(); // Close the profile if it's open
+      }
+    };
+
+    document.addEventListener("click", handleOutsideClick);
+
+    return () => {
+      document.removeEventListener("click", handleOutsideClick);
+    };
+  }, [isOpen, profileOpen, toggleSidebar, toggleProfile]);
 
   return (
     <aside
